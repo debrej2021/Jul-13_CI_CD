@@ -39,7 +39,7 @@ def check_for_new_commits(local_repo_path, github_repo_url):
         print(f"Unexpected error: {e}")
 
 if __name__ == "__main__":
-    local_repo_path = "C:\July 13th - Project\Jul-13_CI_CD"  # Replace with your local repository path
+    local_repo_path = r"C:\July 13th - Project\Jul-13_CI_CD"  # Replace with your local repository path
     github_repo_url = "https://github.com/debrej2021/Jul-13_CI_CD.git"  # Replace with your GitHub repository URL
 
     check_for_new_commits(local_repo_path, github_repo_url)
