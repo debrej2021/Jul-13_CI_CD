@@ -33,11 +33,24 @@ def check_for_new_commits(local_repo_path, github_repo_url):
             print("No new commits.")
         else:
             print("New commits found.")
+            new_commits = list(repo.iter_commits(f'{local_head}..{remote_head}'))
+
+            for commit in new_commits:
+                print(f"Commit: {commit.hexsha}")
+                print(f"Author: {commit.author.name} <{commit.author.email}>")
+                print(f"Date: {commit.authored_datetime}")
+                print(f"Message: {commit.message}")
+                print("-" * 50)
 
     except git.exc.GitCommandError as e:
-        print(f"Error: {e}")
+        print(f"GitCommandError: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
+
+    # except git.exc.GitCommandError as e:
+    #     print(f"Error: {e}")
+    # except Exception as e:
+    #     print(f"Unexpected error: {e}")
 
 if __name__ == "__main__":
     local_repo_path = r"C:\JUL-13_CI_CD" 
