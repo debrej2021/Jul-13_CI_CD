@@ -41,6 +41,6 @@ def check_for_new_commits(local_repo_path, github_repo_url):
 
 if __name__ == "__main__":
     local_repo_path = r"/JUL-13_CI_CD"  # Replace with your local repository path
-    github_repo_url = "https://github.com/debrej2021/Jul-13_CI_CD.git"  # Replace with your GitHub repository URL
+    github_repo_url = "git@github.com:debrej2021/Jul-13_CI_CD.git"  # Replace with your GitHub repository URL
 
     check_for_new_commits(local_repo_path, github_repo_url)
