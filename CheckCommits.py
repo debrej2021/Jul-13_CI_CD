@@ -11,27 +11,28 @@ def check_for_new_commits(local_repo_path, github_repo_url):
     try:
         # Clone or open the local repository
         if not os.path.exists(local_repo_path):
-            repo = git.Repo.clone_from(github_repo_url, local_repo_path, progress=Progress())
+            repo = git.Repo.clone_from(github_repo_url, local_repo_path)
+            print(f"Cloned repository to {local_repo_path}")
         else:
             repo = git.Repo(local_repo_path)
+            print(f"Opened existing repository at {local_repo_path}")
 
         # Fetch latest changes
         origin = repo.remotes.origin
         origin.fetch()
+        print("Fetched latest changes from origin")
 
         # Get local and remote HEAD commit hashes
         local_head = repo.head.commit
         remote_head = repo.commit('origin/main')  # Adjust 'main' to 'master' if needed
 
+        print(f"Local HEAD: {local_head}")
+        print(f"Remote HEAD: {remote_head}")
+
         if local_head == remote_head:
             print("No new commits.")
         else:
             print("New commits found.")
-            print(f"Local HEAD: {local_head}")
-            print(f"Remote HEAD: {remote_head}")
-            
-            # Optionally, you can pull changes automatically
-            # origin.pull()
 
     except git.exc.GitCommandError as e:
         print(f"Error: {e}")
@@ -39,7 +40,7 @@ def check_for_new_commits(local_repo_path, github_repo_url):
         print(f"Unexpected error: {e}")
 
 if __name__ == "__main__":
-    local_repo_path = r"C:\July 13th - Project\Jul-13_CI_CD"  # Replace with your local repository path
+    local_repo_path = r"/JUL-13_CI_CD"  # Replace with your local repository path
     github_repo_url = "https://github.com/debrej2021/Jul-13_CI_CD.git"  # Replace with your GitHub repository URL
 
     check_for_new_commits(local_repo_path, github_repo_url)
