@@ -9,7 +9,7 @@ class Progress(RemoteProgress):
 
 def check_for_new_commits(local_repo_path, github_repo_url):
     try:
-        # Clone or open the local repository
+       
         if not os.path.exists(local_repo_path):
             repo = git.Repo.clone_from(github_repo_url, local_repo_path)
             print(f"Cloned repository to {local_repo_path}")
