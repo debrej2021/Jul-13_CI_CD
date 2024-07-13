@@ -6,7 +6,7 @@ def setup_nginx_local_instance(instance_ip, key_path):
         # Connect to local instance via SSH
         ssh_client = paramiko.SSHClient()
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh_client.connect(hostname=instance_ip, username="root", key_filename=key_path)
+        ssh_client.connect(hostname="localhost", username="root", key_filename="/c/Users/debsu/.ssh/id_rsa24")
 
         # Update and install Nginx
         update_command = "sudo apt update"
@@ -27,9 +27,9 @@ def setup_nginx_local_instance(instance_ip, key_path):
         nginx_config = """
         server {
             listen 80;
-            server_name your_domain_or_ip;
+            html Server;
 
-            root /path/to/your/html/project;
+            root C:\JUL-13_CI_CD;
             index index.html;
 
             location / {
